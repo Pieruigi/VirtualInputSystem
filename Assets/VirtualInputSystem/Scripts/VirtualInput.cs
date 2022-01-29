@@ -24,6 +24,11 @@ namespace Zoca.VirtualInputSystem
             return (VirtualButtonHandler)handlers.Find(h => h.GetType() == typeof(VirtualButtonHandler) && h.Name.Equals(name));
         }
 
+        static TapHandler FindTap(string name)
+        {
+            return (TapHandler)handlers.Find(h => h.GetType() == typeof(TapHandler) && h.Name.Equals(name));
+        }
+
         /// <summary>
         /// Register a new virtual input handle
         /// </summary>
@@ -80,6 +85,12 @@ namespace Zoca.VirtualInputSystem
         public static bool GetButtonUp(string name)
         {
             return FindButton(name).State == (int)ButtonState.Up;
+        }
+
+        public static bool Tap(string name, out Vector2 position)
+        {
+            return FindTap(name).IsTap(out position);
+            
         }
     }
 
