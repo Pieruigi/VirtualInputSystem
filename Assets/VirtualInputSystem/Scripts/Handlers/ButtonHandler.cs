@@ -6,7 +6,7 @@ namespace Zoca.VirtualInputSystem.Handlers
 {
     public enum ButtonState { None, Down, KeepDown, Up }
 
-    public class VirtualButtonHandler : VirtualInputHandler
+    public class ButtonHandler : InputHandler
     {
         
         public int State
@@ -16,7 +16,7 @@ namespace Zoca.VirtualInputSystem.Handlers
 
         int state = (int)ButtonState.None;
 
-        public VirtualButtonHandler(string name) : base(name) { }
+        public ButtonHandler(string name) : base(name) { }
 
         public void SetState(int state)
         {

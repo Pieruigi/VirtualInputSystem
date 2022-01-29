@@ -12,7 +12,7 @@ namespace Zoca.VirtualInputSystem.Examples
 
         Text logText;
 
-        float logTime = 1;
+        float logTime = 0.5f;
         float logElapsed = 0;
         float redLogElapsed = 0;
 

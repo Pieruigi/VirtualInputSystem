@@ -10,7 +10,7 @@ namespace Zoca.VirtualInputSystem.Handlers
     /// action names; for this reason we always set a default tap name for this type of input.
     /// The tap action is called on pointer up toghether with the tap position.
     /// </summary>
-    public class TapHandler: VirtualInputHandler
+    public class TapHandler: InputHandler
     {
         public const string DefaultName = "Tap";
 

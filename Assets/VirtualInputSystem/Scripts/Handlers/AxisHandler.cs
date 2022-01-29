@@ -7,7 +7,7 @@ namespace Zoca.VirtualInputSystem.Handlers
     /// <summary>
     /// Represent a virtual input axis, useful to implement analogic joystick axis.
     /// </summary>
-    public class VirtualAxisHandler: VirtualInputHandler
+    public class AxisHandler: InputHandler
     {
         public float Value
         {
@@ -23,7 +23,7 @@ namespace Zoca.VirtualInputSystem.Handlers
         float value = 0;
         
 
-        public VirtualAxisHandler(string name): base(name)
+        public AxisHandler(string name): base(name)
         {
            
         }

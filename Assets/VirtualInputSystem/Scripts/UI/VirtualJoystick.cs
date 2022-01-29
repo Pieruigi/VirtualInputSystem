@@ -28,8 +28,8 @@ namespace Zoca.VirtualInputSystem.UI
         float resetTime = 0f; // The time it will take to reset ( 0 means immediate )
 
         // The handlers
-        VirtualAxisHandler horizontalHandler;
-        VirtualAxisHandler verticalHandler;
+        AxisHandler horizontalHandler;
+        AxisHandler verticalHandler;
 
         
         bool isDown = false;
@@ -41,8 +41,8 @@ namespace Zoca.VirtualInputSystem.UI
         private void Awake()
         {
             // Create handlers
-            horizontalHandler = new VirtualAxisHandler(horizontalAxisName);
-            verticalHandler = new VirtualAxisHandler(verticalAxisName);
+            horizontalHandler = new AxisHandler(horizontalAxisName);
+            verticalHandler = new AxisHandler(verticalAxisName);
    
 
         }

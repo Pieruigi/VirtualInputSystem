@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using Zoca.VirtualInputSystem.Handlers;
 
@@ -8,18 +9,26 @@ namespace Zoca.VirtualInputSystem.UI
 {
     public class VirtualButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     {
+        #region actions
+        // Useful for example if you want to add some feedback when the button is pressed
+        public UnityAction<VirtualButton> OnButtonDown;
+        public UnityAction<VirtualButton> OnButtonUp;
+
+        #endregion
+
+
         #region private fields
         [SerializeField]
         string buttonName; // The name of the button ( jump, attack, ecc )
 
         bool isDown = false;
        
-        VirtualButtonHandler handler;
+        ButtonHandler handler;
         #endregion
 
         private void Awake()
         {
-            handler = new VirtualButtonHandler(buttonName);
+            handler = new ButtonHandler(buttonName);
             
             // Reset the handle 
             handler.Reset();
@@ -61,6 +70,8 @@ namespace Zoca.VirtualInputSystem.UI
             isDown = true;
             handler.SetState((int)ButtonState.Down);
             StartCoroutine(CheckTheEndOfFrame(true));
+
+            OnButtonDown?.Invoke(this);
         }
 
         public void OnPointerUp(PointerEventData eventData)
@@ -68,6 +79,8 @@ namespace Zoca.VirtualInputSystem.UI
             isDown = false;
             handler.SetState((int)ButtonState.Up);
             StartCoroutine(CheckTheEndOfFrame(false));
+
+            OnButtonUp?.Invoke(this);
         }
     }
 

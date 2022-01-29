@@ -8,7 +8,7 @@ namespace Zoca.VirtualInputSystem.Handlers
 {
     
 
-    public class SwipeHandler : VirtualInputHandler
+    public class SwipeHandler : InputHandler
     {
         public const string DefaultName = "Swipe";
 

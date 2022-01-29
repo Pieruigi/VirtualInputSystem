@@ -13,16 +13,16 @@ namespace Zoca.VirtualInputSystem
     /// </summary>
     public class VirtualInput
     {
-        static List<VirtualInputHandler> handlers = new List<VirtualInputHandler>();
+        static List<InputHandler> handlers = new List<InputHandler>();
 
-        static VirtualAxisHandler FindAxis(string name)
+        static AxisHandler FindAxis(string name)
         {
-            return (VirtualAxisHandler)handlers.Find(h => h.GetType() == typeof(VirtualAxisHandler) && h.Name.Equals(name));
+            return (AxisHandler)handlers.Find(h => h.GetType() == typeof(AxisHandler) && h.Name.Equals(name));
         }
 
-        static VirtualButtonHandler FindButton(string name)
+        static ButtonHandler FindButton(string name)
         {
-            return (VirtualButtonHandler)handlers.Find(h => h.GetType() == typeof(VirtualButtonHandler) && h.Name.Equals(name));
+            return (ButtonHandler)handlers.Find(h => h.GetType() == typeof(ButtonHandler) && h.Name.Equals(name));
         }
 
         static TapHandler FindTap(string name)
@@ -39,7 +39,7 @@ namespace Zoca.VirtualInputSystem
         /// Register a new virtual input handle
         /// </summary>
         /// <param name="handler"></param>
-        public static void RegisterHandler(VirtualInputHandler handler)
+        public static void RegisterHandler(InputHandler handler)
         {
             if(handlers.Exists(h=>h.Name.Equals(handler.Name)))
                 throw new System.Exception("Virtual input " + handler.Name + " already exists.");
@@ -51,7 +51,7 @@ namespace Zoca.VirtualInputSystem
         /// Unregister an existing virtual input handle
         /// </summary>
         /// <param name="handler"></param>
-        public static void UnregisterHandler(VirtualInputHandler handler)
+        public static void UnregisterHandler(InputHandler handler)
         {
             handlers.Remove(handler);
         }

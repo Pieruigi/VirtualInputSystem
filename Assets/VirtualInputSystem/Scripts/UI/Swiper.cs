@@ -6,7 +6,7 @@ using Zoca.VirtualInputSystem.Handlers;
 
 namespace Zoca.VirtualInputSystem.UI
 {
-    public class Swiper : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IDragHandler
+    public class Swiper : MonoBehaviour, IEndDragHandler, IDragHandler
     {
 
         //bool swiping = false;
@@ -33,16 +33,14 @@ namespace Zoca.VirtualInputSystem.UI
         {
             //swiping = true;
             handler.SetSwipe(eventData.position);
-        }
-
-        public void OnPointerDown(PointerEventData eventData)
-        {
+           
             
         }
 
-        public void OnPointerUp(PointerEventData eventData)
+    
+       
+        public void OnEndDrag(PointerEventData eventData)
         {
-            //swiping = false;
             handler.ResetSwipe();
         }
     }
