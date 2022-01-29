@@ -15,6 +15,7 @@ namespace Zoca.VirtualInputSystem.UI
         float tapTime = 0.5f;
 
         bool taping = false;
+        System.DateTime startTime;
         TapHandler handler;
         float elapsed = 0;
         #endregion
@@ -73,6 +74,7 @@ namespace Zoca.VirtualInputSystem.UI
         {
             //throw new System.NotImplementedException();
             taping = true;
+            startTime = System.DateTime.UtcNow;
             elapsed = tapTime;
         }
 
@@ -83,7 +85,8 @@ namespace Zoca.VirtualInputSystem.UI
                 elapsed = 0;
 
                 // Set the handler
-                handler.SetTap(eventData.position);
+                float duration = (float)(System.DateTime.UtcNow - startTime).TotalSeconds;
+                handler.SetTap(eventData.position, duration);
 
                 // Reset at the end of the frame
                 StartCoroutine(Reset());

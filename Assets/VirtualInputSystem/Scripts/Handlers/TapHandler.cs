@@ -22,11 +22,11 @@ namespace Zoca.VirtualInputSystem.Handlers
         public TapHandler():base(DefaultName) { }
         
         
-        public void SetTap(Vector2 position)
+        public void SetTap(Vector2 position, float duration)
         {
             taping = true;
             data.position = position;
-            
+            data.duration = duration;
         }
 
         public void ResetTap()
