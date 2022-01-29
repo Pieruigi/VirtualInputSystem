@@ -4,24 +4,39 @@ using UnityEngine;
 
 namespace Zoca.VirtualInputSystem.Handlers
 {
+    /// <summary>
+    /// Tap input handle.
+    /// Tap normally comes across the all screen so you don't really need to have multiple
+    /// action names; for this reason we always set a default tap name for this type of input.
+    /// The tap action is called on pointer up toghether with the tap position.
+    /// </summary>
     public class TapHandler: VirtualInputHandler
     {
+        public const string DefaultName = "Tap";
+
         bool taping = false;
-        Vector2 position;
+        //Vector2 position; // The position in screen coordinates
 
-        public TapHandler(string name): base(name) { }
+        Data.TapData data;
 
+        public TapHandler():base(DefaultName) { }
         
-        public void SetTap(bool taping, Vector2 position)
+        
+        public void SetTap(Vector2 position)
         {
-            this.taping = taping;
-            this.position = position;
+            taping = true;
+            data.position = position;
             
         }
 
-        public bool IsTap(out Vector2 position)
+        public void ResetTap()
         {
-            position = this.position;
+            taping = false;
+        }
+
+        public bool GetTap(out Data.TapData data)
+        {
+            data = this.data;
             return taping;
         }
     }

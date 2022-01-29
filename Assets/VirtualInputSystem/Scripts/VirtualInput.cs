@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Zoca.VirtualInputSystem.Data;
 using Zoca.VirtualInputSystem.Handlers;
 
 namespace Zoca.VirtualInputSystem
@@ -27,6 +28,11 @@ namespace Zoca.VirtualInputSystem
         static TapHandler FindTap(string name)
         {
             return (TapHandler)handlers.Find(h => h.GetType() == typeof(TapHandler) && h.Name.Equals(name));
+        }
+
+        static SwipeHandler FindSwipe(string name)
+        {
+            return (SwipeHandler)handlers.Find(h => h.GetType() == typeof(SwipeHandler) && h.Name.Equals(name));
         }
 
         /// <summary>
@@ -87,11 +93,19 @@ namespace Zoca.VirtualInputSystem
             return FindButton(name).State == (int)ButtonState.Up;
         }
 
-        public static bool Tap(string name, out Vector2 position)
+        public static bool GetTap(out TapData data)
         {
-            return FindTap(name).IsTap(out position);
+            return FindTap(TapHandler.DefaultName).GetTap(out data);
             
         }
+
+        public static bool GetSwipe(out SwipeData data)
+        {
+            return FindSwipe(SwipeHandler.DefaultName).GetSwipe(out data);
+
+        }
+
+
     }
 
 }

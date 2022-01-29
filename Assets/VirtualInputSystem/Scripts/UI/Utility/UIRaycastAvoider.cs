@@ -5,11 +5,12 @@ using UnityEngine.UI;
 
 namespace Zoca.VirtualInputSystem.UI
 {
-    public class ImageRaycastAvoider : MonoBehaviour
+    public class UIRaycastAvoider : MonoBehaviour
     {
         private void Awake()
         {
-            GetComponent<Image>().raycastTarget = false;
+            GetComponent<MaskableGraphic>().raycastTarget = false;
+            
         }
 
 
