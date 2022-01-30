@@ -14,7 +14,7 @@ namespace Zoca.VirtualInputSystem.UI
             Color defaultColor = GetComponent<Image>().color;
 
             // Set handlers 
-            GetComponent<VirtualButton>().OnButtonDown += delegate { this.GetComponent<Image>().color = defaultColor * 0.8f; };
+            GetComponent<VirtualButton>().OnButtonDown += delegate { this.GetComponent<Image>().color = defaultColor * 1.4f; };
             GetComponent<VirtualButton>().OnButtonUp += delegate { this.GetComponent<Image>().color = defaultColor; };
         }
 

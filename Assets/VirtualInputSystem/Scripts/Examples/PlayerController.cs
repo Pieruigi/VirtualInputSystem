@@ -14,7 +14,6 @@ namespace Zoca.VirtualInputSystem.Examples
         float torqueAcceleration;
 
 
-
         Rigidbody rb;
         Vector2 moveInput;
 
@@ -68,6 +67,13 @@ namespace Zoca.VirtualInputSystem.Examples
                 //Debug.Log("Button Jump up");
                 flying = false;
                
+            }
+
+            if (VirtualInput.GetButtonDown("Reset"))
+            {
+                rb.position = Vector3.up;
+                rb.velocity = Vector3.zero;
+                
             }
         }
 

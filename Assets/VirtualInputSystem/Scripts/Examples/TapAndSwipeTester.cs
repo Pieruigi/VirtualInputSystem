@@ -29,7 +29,7 @@ namespace Zoca.VirtualInputSystem.Examples
             Data.TapData tapData;
             if(VirtualInput.GetTap(out tapData))
             {
-               
+                Debug.Log("TapData.position:" + tapData.position);
                 (log.transform as RectTransform).anchoredPosition = tapData.position;
                 logElapsed = logTime;
                 logText.text = "Tap";
