@@ -6,7 +6,7 @@ using Zoca.VirtualInputSystem.Handlers;
 
 namespace Zoca.VirtualInputSystem.UI
 {
-    public class Taper : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IDragHandler
+    public class Tapper : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IDragHandler
     {
         #region private fields
         [SerializeField]
@@ -14,10 +14,11 @@ namespace Zoca.VirtualInputSystem.UI
             "Set zero if you want to keep your finger down forever. Default: 0.5 sec.")]
         float tapTime = 0.5f;
 
-        bool taping = false;
+        bool tapping = false;
         System.DateTime startTime;
         TapHandler handler;
         float elapsed = 0;
+
         #endregion
 
         #region private methods
@@ -36,24 +37,26 @@ namespace Zoca.VirtualInputSystem.UI
         // Update is called once per frame
         void Update()
         {
-            if (taping)
+            if (tapping)
             {
                 if(elapsed > 0)
                 {
                     elapsed -= Time.deltaTime;
 
                     if (elapsed <= 0)
-                        taping = false;
+                        tapping = false;
                 }
                 
             }
+
+           
         }
 
         IEnumerator Reset()
         {
             yield return new WaitForEndOfFrame();
 
-            taping = false;
+            tapping = false;
             handler.ResetTap();
         }
         #endregion
@@ -65,7 +68,7 @@ namespace Zoca.VirtualInputSystem.UI
         /// <param name="eventData"></param>
         public void OnDrag(PointerEventData eventData)
         {
-            taping = false;
+            tapping = false;
             elapsed = 0;
             handler.ResetTap();
         }
@@ -73,25 +76,27 @@ namespace Zoca.VirtualInputSystem.UI
         public void OnPointerDown(PointerEventData eventData)
         {
             //throw new System.NotImplementedException();
-            taping = true;
+            tapping = true;
             startTime = System.DateTime.UtcNow;
             elapsed = tapTime;
         }
 
         public void OnPointerUp(PointerEventData eventData)
         {
-            if (taping)
+            if (tapping)
             {
                 elapsed = 0;
 
                 // Set the handler
                 float duration = (float)(System.DateTime.UtcNow - startTime).TotalSeconds;
-                handler.SetTap(eventData.position, duration);
+                handler.Update(eventData.position, duration);
 
                 // Reset at the end of the frame
                 StartCoroutine(Reset());
             }
         }
+
+   
         #endregion
     }
 

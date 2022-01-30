@@ -17,16 +17,15 @@ namespace Zoca.VirtualInputSystem.Handlers
         bool taping = false;
         //Vector2 position; // The position in screen coordinates
 
-        Data.TapData data;
+        Data.TapData data = new Data.TapData();
 
         public TapHandler():base(DefaultName) { }
         
         
-        public void SetTap(Vector2 position, float duration)
+        public void Update(Vector2 position, float duration)
         {
             taping = true;
-            data.position = position;
-            data.duration = duration;
+            data.Update(position, duration);
         }
 
         public void ResetTap()

@@ -8,19 +8,40 @@ namespace Zoca.VirtualInputSystem.Examples
     public class TapAndSwipeTester : MonoBehaviour
     {
         [SerializeField]
+        GameObject pointer;
+
+        [SerializeField]
         GameObject log;
 
-        Text logText;
+        [SerializeField]
+        Text actionText;
 
-        float logTime = 0.5f;
+        [SerializeField]
+        Text durationText;
+
+        [SerializeField]
+        Text deltaText;
+
+        [SerializeField]
+        Text speedText;
+
+        [SerializeField]
+        Text avgSpeedText;
+
+        [SerializeField]
+        Text distanceText;
+
+
+
+        float logTime = 5f;
         float logElapsed = 0;
         float redLogElapsed = 0;
 
         // Start is called before the first frame update
         void Start()
         {
-            logText = log.GetComponentInChildren<Text>();
             log.SetActive(false);
+            pointer.SetActive(false);
         }
 
         // Update is called once per frame
@@ -29,24 +50,37 @@ namespace Zoca.VirtualInputSystem.Examples
             Data.TapData tapData;
             if(VirtualInput.GetTap(out tapData))
             {
-                Debug.Log("TapData.position:" + tapData.position);
-                (log.transform as RectTransform).anchoredPosition = tapData.position;
+                Debug.Log("TapData.position:" + tapData.Position);
+                (pointer.transform as RectTransform).anchoredPosition = tapData.Position;
                 logElapsed = logTime;
-                logText.text = "Tap";
+                //logText.text = "Tap";
+                pointer.SetActive(true);
                 log.SetActive(true);
-
+                actionText.text = "Tapping";
+                durationText.text = tapData.Duration.ToString();
+                deltaText.text = "";
+                distanceText.text = "";
+                speedText.text = "";
+                avgSpeedText.text = "";
             }
+            
 
             Data.SwipeData swipeData;
             if (VirtualInput.GetSwipe(out swipeData))
             {
-                (log.transform as RectTransform).anchoredPosition = swipeData.position;
+                (pointer.transform as RectTransform).anchoredPosition = swipeData.Position;
                 logElapsed = logTime;
-                logText.text = "Swipe";
+                //logText.text = "Swipe";
+                pointer.SetActive(true);
                 log.SetActive(true);
-
+                actionText.text = "Swapping";
+                durationText.text = swipeData.Duration.ToString();
+                deltaText.text = swipeData.Delta.ToString();
+                distanceText.text = swipeData.Distance.ToString();
+                speedText.text = swipeData.Speed.ToString();
+                avgSpeedText.text = swipeData.AverageSpeed.ToString();
             }
-
+            
             CheckLog();
             
         }

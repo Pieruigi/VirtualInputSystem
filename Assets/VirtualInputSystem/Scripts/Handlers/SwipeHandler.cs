@@ -15,29 +15,30 @@ namespace Zoca.VirtualInputSystem.Handlers
         
 
         bool swiping = false;
-        Data.SwipeData data;
+        Data.SwipeData data = new Data.SwipeData();
 
         public SwipeHandler() : base(DefaultName) { }
 
-        public void SetSwipe(Vector2 position)
+        public void Update(Vector2 position)
         {
             if (!swiping)
             {
                 swiping = true;
-                data.position = position;
-                data.delta = Vector2.zero;
+                data.Reset(); // Just to be sure
+                data.Update(position);
             }
             else
             {
-                data.delta = data.position - position;
-                data.position = position;
+                data.Update(position);
             }
 
         }
 
+       
         public void ResetSwipe()
         {
             swiping = false;
+            data.Reset();
         }
 
         public bool GetSwipe(out Data.SwipeData info)
