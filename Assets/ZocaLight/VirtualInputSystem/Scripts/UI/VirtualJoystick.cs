@@ -43,8 +43,8 @@ namespace Zoca.VirtualInputSystem.UI
             // Create handlers
             horizontalHandler = new AxisHandler(horizontalAxisName);
             verticalHandler = new AxisHandler(verticalAxisName);
-   
-
+            VirtualInput.RegisterHandler(horizontalHandler);
+            VirtualInput.RegisterHandler(verticalHandler);
         }
 
         // Start is called before the first frame update
@@ -71,6 +71,12 @@ namespace Zoca.VirtualInputSystem.UI
                 UpdateAxisValue();
              
             }
+        }
+
+        private void OnDestroy()
+        {
+            VirtualInput.UnregisterHandler(horizontalHandler);
+            VirtualInput.UnregisterHandler(verticalHandler);
         }
 
         void UpdateAxisValue()
