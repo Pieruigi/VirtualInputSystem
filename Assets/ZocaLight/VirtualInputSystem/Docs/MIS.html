@@ -5,7 +5,7 @@
 	<title></title>
 	<meta name="generator" content="Neat Office 6.2.8.2 (Windows)"/>
 	<meta name="created" content="2022-01-29T22:33:59.326000000"/>
-	<meta name="changed" content="2022-02-03T22:32:12.901000000"/>
+	<meta name="changed" content="2022-02-03T22:46:09.924000000"/>
 	<style type="text/css">
 		@page { size: 21cm 29.7cm; margin: 2cm }
 		p { margin-bottom: 0.25cm; line-height: 115%; background: transparent }
@@ -41,30 +41,28 @@ Input System 1.0.0</b></font></font></p>
 <p>The MIS provides you with the most common input controls for your
 mobile game:</p>
 <ol>
-	<li><p>Virtual Joystick</p>
-	<li><p>Virtual Tapstick</p>
+	<li><p>Virtual Joystick or Tapstick</p>
 	<li><p>Virtual Button</p>
-	<li><p> Tap</p>
+	<li><p>Tap</p>
 	<li><p>Swipe.</p>
 </ol>
 <p><br/>
 <br/>
 
 </p>
-<p>In the following section you will be explained how to use each of
-them.</p>
+<p>The following sections will explain how they work.</p>
 <p><br/>
 <br/>
 
 </p>
 <h2 class="western">Virtual Joystick</h2>
-<p>The virtual joystick alows you to simulate any gamepad analogic
-axis.</p>
-<p>There are two modes it can be set: as joystick or as tapstick ( I
-didn&rsquo;t know how to call it :).</p>
+<p>The virtual joystick simulates gamepad analogic axis.</p>
+<p>It can be set in two modes: joystick or tapstick ( I didn&rsquo;t
+know how to call it :).</p>
 <h3 class="western">Joystick mode</h3>
 <p>Open the JoystickAndButtonScene to see an example.</p>
-<p>Lets see how to set up step by step:</p>
+<p>Lets see how to set it up step by step ( the process is exactly
+the same in tap mode ):</p>
 <ol>
 	<li><p>Create a new scene or open an existing one</p>
 	<li><p>Add a new canvas ( you can use also an existing one )</p>
@@ -86,17 +84,15 @@ see the following parameters:</p>
 	<li><p>VerticalAxis: the same as the horizontal axis ( for example
 	move forth and back )</p>
 	<li><p>Stick: the analogic stick ( the child object )</p>
-	<li><p>MoveRange: the maximum distance you want the stick to be
-	moved ( normally it will be set according to the width and height in
-	the RectTransform when you resize the joystick )</p>
+	<li><p>MoveRange: the maximum stick range ( you should adjust it
+	according to the joystick size )</p>
 	<li><p>ResetTime: how long it will take the stick to get back in the
-	rest position; if you set zero the stick will snap in one single
-	frame</p>
-	<li><p>TapMode: a flag to set the tap mode</p>
+	rest position; when zero the stick will snap in just one frame</p>
+	<li><p>TapMode: tap mode enable/disable</p>
 </ul>
-<p>If you want for example to add a Joystick to move your player name
-the axis &ldquo;Horizontal&rdquo; and &ldquo;Vertical&rdquo; and in
-your PlayerController script add the following code:</p>
+<p>If you want for example to add a Joystick to move your player you
+could name the axis &ldquo;Horizontal&rdquo; and &ldquo;Vertical&rdquo;
+and in your PlayerController script add the following code:</p>
 <p><br/>
 <br/>
 
@@ -116,34 +112,33 @@ Unity InputSystem:</font></p>
 returns a float value between -1 and 1 depending on the stick
 position.</font></p>
 <p><font size="3" style="font-size: 12pt">There is also a
-GetAxisRaw(&ldquo;AxisName&rdquo;), which returns 0 if the stick rest
-in place, otherwise returns 1 or -1 depending whether the axis value
-is positive or negative.</font></p>
+GetAxisRaw(&ldquo;AxisName&rdquo;), which returns 0 when the stick is
+in the rest poisition, otherwise returns 1 or -1 depending whether
+the axis value is positive or negative.</font></p>
 <p><font size="3" style="font-size: 12pt">You can add as many virtual
-joysticks as you want: for example you want your character to move
-and look around you can add two joysticks, one to the left and the
-other to the right. Then call the left joystick axis &ldquo;Horizontal&rdquo;
-and &ldquo;Vertical&rdquo; while the right joystick axis
-&ldquo;LookHorizontal&rdquo; and &ldquo;LookVertical&rdquo;.</font></p>
+joysticks as you want: for example if you want your character to move
+and look around you can add two joysticks and call the axis
+&ldquo;Horizontal&rdquo; and &ldquo;Vertical&rdquo; in left joystick
+and &ldquo;LookHorizontal&rdquo; and &ldquo;LookVertical&rdquo; in
+the right joystick.</font></p>
 <p><font size="3" style="font-size: 12pt">Now in your
 PlayerController script you can call both
 VirtualInput.GetAxis(&ldquo;Horizontal&rdquo;) and
-VirtualInput.GetAxis(&ldquo;LookHorizontal&rdquo;) for example in
-order to move and look horizontal.</font></p>
+VirtualInput.GetAxis(&ldquo;LookHorizontal&rdquo;).</font></p>
 <h3 class="western">Tapstick mode</h3>
 <p>The tapistick is similar to the joystick, with just a little
 difference.</p>
 <p>You can see an example loading the TapstickAndButtonScene.</p>
-<p>In normal mode you must tap the stick in the center and then drag
-it around, instead in tap mode the stick soon reaches the point you
-tap and the input is updated accordingly; then you can keep dragging
-the stick wherever you want.</p>
+<p>In normal mode you must tap the stick in the center of the
+joystick and then drag it, instead in tap mode the stick soon reaches
+the point you tap and the input is updated accordingly; then you can
+keep dragging the stick wherever you want.</p>
 <h2 class="western"></h2>
 <h2 class="western">Virtual Button</h2>
 <p>You can add many virtual buttons in your mobile game.</p>
-<p>Check the VirtualJoystickAndButton example in which the player can
-jump and glide.</p>
-<p>Lets step by step how to put a button into a new scene:</p>
+<p>Check the VirtualJoystickAndButton example to see how the player
+can jump and glide using two buttons.</p>
+<p>Step by step:</p>
 <ol>
 	<li><p>Create a new scene or open an existing one</p>
 	<li><p>Add a new canvas ( you can use also an existing one )</p>
@@ -243,6 +238,14 @@ SwipeData structure.</p>
 	<li><p>Distance: the total covered distance</p>
 	<li><p>AvgSpeed: the average speed ( Distance / Duration )</p>
 </ul>
+<p><br/>
+<br/>
+
+</p>
+<p><br/>
+<br/>
+
+</p>
 <p><br/>
 <br/>
 
