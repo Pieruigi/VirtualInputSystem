@@ -5,7 +5,7 @@
 	<title></title>
 	<meta name="generator" content="Neat Office 6.2.8.2 (Windows)"/>
 	<meta name="created" content="2022-01-29T22:33:59.326000000"/>
-	<meta name="changed" content="2022-01-30T00:39:04.228000000"/>
+	<meta name="changed" content="2022-02-03T22:32:12.901000000"/>
 	<style type="text/css">
 		@page { size: 21cm 29.7cm; margin: 2cm }
 		p { margin-bottom: 0.25cm; line-height: 115%; background: transparent }
@@ -42,6 +42,7 @@ Input System 1.0.0</b></font></font></p>
 mobile game:</p>
 <ol>
 	<li><p>Virtual Joystick</p>
+	<li><p>Virtual Tapstick</p>
 	<li><p>Virtual Button</p>
 	<li><p> Tap</p>
 	<li><p>Swipe.</p>
@@ -57,8 +58,11 @@ them.</p>
 
 </p>
 <h2 class="western">Virtual Joystick</h2>
-<p>The virtual joystick alown you to simply simulate gamepad analogic
+<p>The virtual joystick alows you to simulate any gamepad analogic
 axis.</p>
+<p>There are two modes it can be set: as joystick or as tapstick ( I
+didn&rsquo;t know how to call it :).</p>
+<h3 class="western">Joystick mode</h3>
 <p>Open the JoystickAndButtonScene to see an example.</p>
 <p>Lets see how to set up step by step:</p>
 <ol>
@@ -88,6 +92,7 @@ see the following parameters:</p>
 	<li><p>ResetTime: how long it will take the stick to get back in the
 	rest position; if you set zero the stick will snap in one single
 	frame</p>
+	<li><p>TapMode: a flag to set the tap mode</p>
 </ul>
 <p>If you want for example to add a Joystick to move your player name
 the axis &ldquo;Horizontal&rdquo; and &ldquo;Vertical&rdquo; and in
@@ -125,10 +130,15 @@ PlayerController script you can call both
 VirtualInput.GetAxis(&ldquo;Horizontal&rdquo;) and
 VirtualInput.GetAxis(&ldquo;LookHorizontal&rdquo;) for example in
 order to move and look horizontal.</font></p>
-<p><br/>
-<br/>
-
-</p>
+<h3 class="western">Tapstick mode</h3>
+<p>The tapistick is similar to the joystick, with just a little
+difference.</p>
+<p>You can see an example loading the TapstickAndButtonScene.</p>
+<p>In normal mode you must tap the stick in the center and then drag
+it around, instead in tap mode the stick soon reaches the point you
+tap and the input is updated accordingly; then you can keep dragging
+the stick wherever you want.</p>
+<h2 class="western"></h2>
 <h2 class="western">Virtual Button</h2>
 <p>You can add many virtual buttons in your mobile game.</p>
 <p>Check the VirtualJoystickAndButton example in which the player can
@@ -214,9 +224,40 @@ SwipeData structure.</p>
 <br/>
 
 </p>
+<h3 class="western">TapData 
+</h3>
+<ul>
+	<li><p>Position: your finger position on the screen</p>
+	<li><p>Duration: how log did you pressed your finger on the screen</p>
+</ul>
+<p><br/>
+<br/>
+
+</p>
+<h3 class="western">SwipeData</h3>
+<ul>
+	<li><p>Position: your finger current position on the screen</p>
+	<li><p>Duration: how much time the swipe is taking</p>
+	<li><p>Delta: the amount of movement in the last frame</p>
+	<li><p>Speed: the last frame speed ( Delta / Time.deltaTime )</p>
+	<li><p>Distance: the total covered distance</p>
+	<li><p>AvgSpeed: the average speed ( Distance / Duration )</p>
+</ul>
+<p><br/>
+<br/>
+
+</p>
 <p>For any question or suggestion feel free to write to
 <a href="mailto:pierluigi.zomparelli@gmail.com">pierluigi.zomparelli@gmail.com</a></p>
 <p><font size="3" style="font-size: 12pt">Our links here <a href="https://instabio.cc/Zocalight" target="_blank">Instabio</a>.</font></p>
+<p><br/>
+<br/>
+
+</p>
+<p><br/>
+<br/>
+
+</p>
 <p><br/>
 <br/>
 
